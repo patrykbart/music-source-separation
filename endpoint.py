@@ -1,6 +1,7 @@
 import os
 import time
 import flask
+import argparse
 
 app = flask.Flask(__name__)
 
@@ -50,5 +51,10 @@ def separate():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--port", type=int, default=5000)
+
+    args = parser.parse_args()
+
     os.makedirs("output", exist_ok=True)
-    app.run(debug=True)
+    app.run(port=args.port)
